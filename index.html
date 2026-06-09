@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PAT Fuse Checker</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+    h1 { text-align: center; }
+    label { font-weight: bold; display: block; margin-top: 20px; }
+    input { width: 100%; padding: 10px; margin-top: 5px; }
+    button { margin-top: 20px; width: 100%; padding: 12px; background: #0078ff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #005fcc; }
+    .result { margin-top: 20px; padding: 15px; border-radius: 5px; font-size: 18px; }
+    .ok { background: #d4ffd4; border: 1px solid #4caf50; }
+    .fail { background: #ffd4d4; border: 1px solid #ff4c4c; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PAT Fuse Checker</h1>
 
+    <label>Appliance Power (Watts)</label>
+    <input id="watts" type="number" placeholder="e.g. 1200" />
+
+    <label>Voltage (Volts)</label>
+    <input id="volts" type="number" value="230" />
+
+    <button onclick="checkFuse()">Check Fuse Rating</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function checkFuse() {
+      const watts = parseFloat(document.getElementById("watts").value);
+      const volts = parseFloat(document.getElementById("volts").value);
+
+      if (!watts || !volts) {
+        return show("Please enter valid numbers.", "fail");
+      }
+
+      const amps = watts / volts;
+
+      let fuse;
+      if (amps <= 3) fuse = "3A";
+      else if (amps <= 13) fuse = "13A";
+      else fuse = "Over 13A — appliance exceeds standard plug rating";
+
+      show(`Current draw: ${amps.toFixed(2)}A<br>Recommended fuse: <strong>${fuse}</strong>`,
+           amps <= 13 ? "ok" : "fail");
+    }
+
+    function show(msg, type) {
+      const out = document.getElementById("output");
+      out.className = "result " + type;
+      out.innerHTML = msg;
+    }
+  </script>
+</body>
+</html>
