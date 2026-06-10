@@ -8,11 +8,12 @@
   <title>PAT Fuse Checker</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
-    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 12px; }
     h1 { text-align: center; }
     label { font-weight: bold; display: block; margin-top: 20px; }
-    input { width: 100%; padding: 10px; margin-top: 5px; }
-    button { margin-top: 20px; width: 100%; padding: 12px; background: #0078ff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+    input, button { box-sizing: border-box; width: 100%; }
+    input { padding: 12px; margin-top: 5px; }
+    button { margin-top: 20px; padding: 12px; background: #0078ff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
     button:hover { background: #005fcc; }
     .result { margin-top: 20px; padding: 15px; border-radius: 5px; font-size: 18px; }
     .ok { background: #d4ffd4; border: 1px solid #4caf50; }
